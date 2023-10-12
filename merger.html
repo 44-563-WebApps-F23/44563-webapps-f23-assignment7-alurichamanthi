@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html> <head> <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: rgb(186, 13, 109);
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style></head>
+
+
+
+<input type="text" id="inputText" placeholder="Enter text">
+<button id="addEndButton">Add end</button>
+<button id="addFrontButton">Add front</button>
+<button id="removeButton">Remove</button>
+
+<p> Press the button to create an new element of type div and then add it to the container.
+</p>
+
+ 
+
+    <div class="flex-container">
+<div class="merger">row item 1</div>
+<div class="merger">row item 2</div>
+<div class="merger">row item 3</div>
+</div>
+
+ 
+
+    <script>
+        document.getElementById('addEndButton').addEventListener('click', function() {
+            const inputElement = document.getElementById('inputText');
+            const container = document.querySelector('.flex-container');
+
+            // Create a new div element
+            const newDiv = document.createElement('div');
+            newDiv.innerHTML = inputElement.value;
+            newDiv.className = 'merger';
+
+            // Append the new element to the container
+            container.appendChild(newDiv);
+        });
+
+ 
+
+        document.getElementById('addFrontButton').addEventListener('click', function() {
+            const inputElement = document.getElementById('inputText');
+            const container = document.querySelector('.flex-container');
+
+            // Create a new div element
+            const newDiv = document.createElement('div');
+            newDiv.innerHTML = inputElement.value;
+            newDiv.className = 'merger';
+
+            // Get the container div and insert the new element at the front
+            container.insertBefore(newDiv, container.firstChild);
+        });
+
+ 
+
+        document.getElementById('removeButton').addEventListener('click', function() {
+            const mergerItems = document.getElementsByClassName('merger');
+            const length = mergerItems.length;
+
+ 
+
+            if (length > 0) {
+                const middleIndex = Math.floor(length / 2);
+                mergerItems[middleIndex].remove();
+            }
+        });
+</script>
+</html>	
